@@ -1,0 +1,256 @@
+#bgCanvas{
+  position: fixed;
+  inset: 0;             /* top:0 right:0 bottom:0 left:0 */
+  z-index: 0;          /* queda detrás */
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* no bloquea clicks */
+}
+/* Mi contenido arriba */
+.layout{
+  position: relative;
+  z-index: 1;
+}
+
+:root{
+  --bg: #e89292; /* backgrounddd */
+  --panel: #f3bbbb;
+  --text: #12131a;
+  --muted: #5a5f73;
+  --border: #631212;
+  --accent: #ff3b3b;
+  --accent-soft: #c87777;
+  --radius: 18px;
+}
+
+*{ box-sizing: border-box; margin: 0; padding: 0; }
+
+html{
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: transparent; /* <-- importante */
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.layout{
+  width: min(1100px, 100% - 32px);
+  margin: 24px auto;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 18px;
+}
+
+/* Sidebar */
+.sidebar{
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.profile{
+  display: grid;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+
+.avatar{
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--accent-soft);
+}
+
+.name{ font-size: 20px; }
+.role{ color: var(--muted); font-size: 14px; }
+
+.quick-links{
+  display: grid;
+  gap: 10px;
+}
+
+.social{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social a{
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.social a:hover{
+  border-color: #cfd2e6;
+  color: var(--text);
+}
+
+.menu{
+  display: grid;
+  gap: 6px;
+}
+
+.menu a{
+  text-decoration: none;
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.menu a:hover{
+  background: var(--accent-soft);
+}
+
+/* Contenido */
+.content{
+  display: grid;
+  gap: 14px;
+}
+
+.card{
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.card h2{
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.grid-2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+ul{ padding-left: 18px; margin-top: 8px; }
+
+/* Items (xp/educación) */
+.item{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-top: 10px;
+  background: #fcfcff;
+}
+
+.item-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.tag{
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* Proyectos */
+.projects{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.project{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  background: #fcfcff;
+}
+
+.project .meta{
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* Botones reutilizables */
+.btn{
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text);
+  background: #f2f3fb;
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  border-radius: 14px;
+}
+
+.btn:hover{
+  border-color: #cfd2e6;
+  background: #eceefd;
+}
+
+.btn.primary{
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.btn.primary:hover{
+  filter: brightness(0.95);
+}
+
+.btn.small{
+  padding: 8px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.footer{
+  text-align: center;
+  color: var(--muted);
+  padding: 10px 0 30px;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .layout{ grid-template-columns: 1fr; }
+  .sidebar{ position: relative; top: 0; }
+  .projects{ grid-template-columns: 1fr; }
+  .grid-2{ grid-template-columns: 1fr; }
+}
+
+/* Click en #algo, esa sección se vuelve :target */
+.card:target{
+  animation: jump 420ms ease-out;
+  outline: 2px solid rgba(255, 59, 59, 0.55);
+  box-shadow: 0 12px 30px rgba(255, 59, 59, 0.18);
+}
+
+@keyframes jump{
+  0%   { transform: translateY(0); }
+  35%  { transform: translateY(-10px); }
+  70%  { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
