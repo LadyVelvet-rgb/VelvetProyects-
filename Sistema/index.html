@@ -1,0 +1,126 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>
+    <div class="profile">Agenda Dental</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+ <header class="topbar center">
+  <div class="brand-col">
+
+    <h1>Agenda Dental</h1>
+  </div>
+  <div class="pill">Pacientes + Turnos</div>
+</header>
+
+  <main class="layout">
+
+    <!-- COLUMNA AGENDA -->
+    <section class="panel">
+      <h2>Agendar turno</h2>
+
+      <form id="turnoForm" class="form">
+        <label>
+          Fecha
+          <input type="date" id="fecha" required />
+        </label>
+
+        <label>
+          Hora
+          <input type="time" id="hora" required />
+        </label>
+
+        <label>
+          Servicio
+          <select id="servicio" required>
+            <option value="">Seleccionar…</option>
+            <option>Consulta</option>
+            <option>Limpieza</option>
+            <option>Ortodoncia</option>
+            <option>Endodoncia</option>
+            <option>Extracción</option>
+            <option>Control</option>
+          </select>
+        </label>
+
+        <label>
+          Paciente
+          <select id="pacienteSelect" required></select>
+        </label>
+
+        <label>
+          Notas del turno (opcional)
+          <input type="text" id="notasTurno" placeholder="Ej: dolor molar, urgencia…" />
+        </label>
+
+        <button class="btn primary" type="submit">Guardar turno</button>
+        <p id="msg" class="msg" aria-live="polite"></p>
+      </form>
+
+      <div class="divider"></div>
+
+      <h2>Turnos del día</h2>
+      <div class="row">
+        <input type="date" id="fechaVer" />
+        <button class="btn" id="btnHoy">Ver hoy</button>
+      </div>
+
+      <ul id="listaTurnos" class="list"></ul>
+    </section>
+
+    <!-- COLUMNA PACIENTES -->
+    <section class="panel">
+      <div class="row space">
+        <h2>Pacientes</h2>
+        <button class="btn" id="btnNuevoPaciente">+ Nuevo</button>
+      </div>
+
+      <input class="search" id="buscar" placeholder="Buscar por nombre, teléfono o RUC…" />
+
+      <div id="gridPacientes" class="grid"></div>
+    </section>
+  </main>
+
+  <!-- MODAL NUEVO PACIENTE -->
+  <dialog id="modalPaciente" class="modal">
+    <form id="pacienteForm" method="dialog" class="modal-content">
+      <h3>Nuevo paciente</h3>
+
+      <label>
+        Nombre y apellido
+        <input type="text" id="pNombre" required />
+      </label>
+
+      <label>
+        Teléfono
+        <input type="tel" id="pTelefono" required placeholder="+595…" />
+      </label>
+
+      <label>
+        RUC
+        <input type="text" id="pRuc" required placeholder="1234567-8" />
+      </label>
+
+      <label>
+        Notas (opcional)
+        <input type="text" id="pNotas" placeholder="Alergias, preferencias, etc." />
+      </label>
+
+      <div class="row end">
+        <button class="btn" value="cancel">Cancelar</button>
+        <button class="btn primary" id="guardarPaciente" value="default">Guardar</button>
+      </div>
+
+      <p class="hint">Ma, se guarda en tu navegador (LocalStorage).</p>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+
+  <footer class="layout" style = "color: rgb(123, 5, 29);">
+    <p>Diseñado por VelvetCompany© - <a href="https://github.com/LadyVelvet-rgb">LadyVelvet-rgb</a></p>
+  </footer>
+
+</body>
+</html>

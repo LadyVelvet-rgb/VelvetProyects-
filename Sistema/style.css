@@ -1,0 +1,183 @@
+
+:root{
+  --bg:#020915;
+  --blur: 30px;
+  --card:#111a2a;
+  --card2:#0f1726;
+  --text:#e8eefc;
+  --muted:#9fb2d8;
+  --line:#22324f;
+  --accent:#7aa2ff;
+  --danger:#ff6b6b;
+  --ok:#3ddc97;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color: var(--text);
+
+  /*Color base (antes parte del background shorthand) */
+  background-color: var(--bg);
+
+  /* capas: (1) oscurecer, (2) foto, (3) los gradientes */
+  background-image:
+    linear-gradient(0deg, rgba(2,9,21,.75), rgba(2,9,21,.75)),
+    url("foto/Torres-odontologia.jpeg"),
+    radial-gradient(1200px 600px at 20% -20%, #092779 0%, transparent 90%),
+    radial-gradient(900px 500px at 120% 10%, #2a1555 0%, transparent 90%);
+
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-position: center, center, 0 0, 0 0;
+  background-size: cover, cover, auto, auto;
+
+  /* opcional */
+  background-attachment: fixed, fixed, scroll, scroll;
+}
+
+
+.topbar.center{
+  justify-content:space-between;
+}
+
+.brand-col{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 20px;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  background: rgba(11,15,23,.75);
+  backdrop-filter: blur(10px);
+}
+.topbar h1{ margin:0; font-size:18px; letter-spacing:.3px; }
+.pill{
+  font-size:12px;
+  color:var(--muted);
+  border:1px solid var(--line);
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(17,26,42,.6);
+}
+
+.layout{
+  display:grid;
+  grid-template-columns: 360px 1fr;
+  gap:16px;
+  padding:16px;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.panel{
+  background: linear-gradient(180deg, rgba(17,26,42,.9), rgba(15,23,38,.9));
+  border:1px transparent 90% var(--line);
+  border-radius:15px;
+  padding:14px;
+  box-shadow: 0 15px 30px rgba(6, 3, 88, 0.573);
+}
+
+h2{ font-size:14px; color:var(--muted); margin:0 0 10px; text-transform: uppercase; letter-spacing: .12em; }
+.form label, .modal-content label{
+  display:grid;
+  gap:6px;
+  margin-bottom:10px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+input, select{
+  width:100%;
+  padding:10px 10px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background: rgba(10,14,22,.65);
+  color:var(--text);
+  outline:none;
+}
+input:focus, select:focus{ border-color: rgba(122,162,255,.75); box-shadow:0 0 0 3px rgba(122,162,255,.18); }
+
+.btn{
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background: rgba(17,26,42,.7);
+  color:var(--text);
+  cursor:pointer;
+}
+.btn:hover{ border-color: rgba(122,162,255,.7); }
+.btn.primary{
+  border-color: rgba(122,162,255,.7);
+  background: rgba(122,162,255,.18);
+}
+.row{ display:flex; gap:10px; align-items:center; }
+.row.space{ justify-content:space-between; }
+.row.end{ justify-content:flex-end; }
+.search{ margin:6px 0 12px; }
+
+.divider{ height:1px; background:var(--line); margin:14px 0; opacity:.9; }
+
+.list{ list-style:none; padding:0; margin:8px 0 0; display:grid; gap:10px; }
+.item{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px;
+  background: rgba(10,14,22,.55);
+}
+.item .top{ display:flex; justify-content:space-between; gap:10px; }
+.badge{
+  font-size:11px;
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  color:var(--muted);
+}
+.badge.ok{ border-color: rgba(61,220,151,.45); color: rgba(61,220,151,.95); }
+.badge.no{ border-color: rgba(255,107,107,.45); color: rgba(255,107,107,.95); }
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap:12px;
+}
+.card{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:12px;
+  background: rgba(10,14,22,.55);
+  display:grid;
+  gap:8px;
+}
+.card h3{ margin:0; font-size:14px; }
+.meta{ display:grid; gap:4px; font-size:12px; color:var(--muted); }
+.meta b{ color:var(--text); font-weight:600; }
+.card .actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+.msg{ min-height:18px; color:var(--muted); margin:10px 0 0; font-size:12px; }
+
+.modal{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:0;
+  background: rgba(17,26,42,.95);
+  color:var(--text);
+  width:min(520px, 92vw);
+}
+.modal::backdrop{ background: rgba(0,0,0,.55); }
+.modal-content{
+  padding:14px;
+}
+.modal-content h3{ margin:0 0 10px; }
+.hint{ margin:8px 0 0; color:var(--muted); font-size:12px; }
+
+@media (max-width:900px){
+  .layout{ grid-template-columns:1fr; }
+}
